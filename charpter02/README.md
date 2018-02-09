@@ -157,7 +157,38 @@ print(person('Michael', 30)) # name: Michael age: 30 other: {}
 print(person('Michael', 30, city='Beijing', {'gender': 'M', 'job': 'Engineer'}))
 ```
 
-#### 3.5 命名关键字模块
+#### 3.5 命名关键字参数
+
+* 对于关键字参数，函数调用者可以传入任意不受限制的关键字参数。茱萸到底传入了哪些，需要在函数内部铜鼓kw检查
+
+```py
+# 1. 关键字参数
+def person(name, age, **kw):
+    if 'city' in kw:
+        pass
+    if 'job' in kw
+        pass
+    print('name:', name, 'age:', age, 'other', kw)
+print(person('Jack', 24, city='Beijing', addr='Chaoyang', sex='M'))
+
+# 2. 命名关键字参数; 和关键字参数**kw不同，命名关键字参数需要一个特殊分隔符 *, * 后面的参数被视为命名关键字参数
+def person(name, age, *, city, job):
+    print(name, age, city, job)
+print(person('Jack', 24, city='Beijing', job='Engineer'))
+
+# 3. 如果函数定义中已经有了一个可变参数，后面跟着的命名关键字，就不在需要一个特殊分隔符 * 了
+def person(name, age, *args, city, job):
+    print(name, age, args, city, job)
+print(person('Jack', 24, city='Beijing', job='Engineer'))
+
+# 4. 命名关键字参数接受缺省值
+def person (name, age, *, city='Beijing', job):
+    print(name, age, city, job)
+print(person('Jack', 24, job = 'Engineer'))
+```
+
+#### 4. 递归函数
+
 
 
 
