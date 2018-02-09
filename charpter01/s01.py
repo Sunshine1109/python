@@ -1,61 +1,49 @@
-## python基础
+#!/usr/bin/env python3
 
-```zh
-# 输入和输出
-# 数据类型和变量
-# 字符串编码
-```
-
-#### 1. 输入和输出
-
-```py
+print('################## 输入输出 #########################\n\n')
 # 输出
-print('hello, world')
+# print('hello world')
 
-# 可以用逗号连接，逗号会对应输出空格
-print('hello', 'world')
+# 1. 可以接受多个字符串，用逗号","隔开
+# 2. 遇到逗号会输出一个空格
+print('The quick brown fox', 'jump over', 'the lazy dog')
 
 # 输入
-name = input()
-print('hello', name)
+# Python提供了input()
 
-# 可以设置输入提示语
-name = input('please input your name: ')
-print('hello', name)
-```
+# name = input()
+# name = input('please input your name: ')
+# print('hello', name)
 
-#### 2. 数据类型和变量
 
-* 整数
+print('\n\n################## 数据类型和变量 #####################\n\n')
 
-```py
-# 十进制
+# 1. 整数
+print('\n## 整数 ##\n')
 print(0, 100, -100, 0)
 
 # 十六进制
 print(0xff00)
-```
 
-* 浮点数
-
-```py
+# 2. 浮点数
+print('\n## 浮点数 ##\n')
 print(1.23, -9.01)
 
 # 科学计数法 1.29 x 10的9次方和0.000012
 print(1.29e9, 1.2e-5)
-```
 
-* 字符串
-
-```py
+# 3. 字符
 # '' 和 ""都可以
+print('\n## 字符 ##\n')
 print('单引号')
 print("双引号")
 
 # 转义字符\
 print('hello \"xiuhong\"')
+
 # 转义其它字符\n、\t等
 print('hello\nworld')
+
 # 不转义 r'内容'
 print(r'hello \n world')
 
@@ -69,44 +57,39 @@ print('''line1
 print(r'''hello\nworld
 line2\t
 ''')
-```
 
-* 布尔值
+# 4. 布尔值
 
-```py
-# 布尔值只有True, False (注意大小写)
-True
-False
+print('\n## 布尔值 ##\n')
+print(True)
+print(False)
 
 # True
-3 > 2
+print(3 > 2)
 
 # False
-3 > 5
+print(3 > 5)
 
 # 布尔值也可以用and\or\not运算
-True and True
-True and False
-False and False
-5 > 3 and 3 >1
+print(True and True)
+print(True and False)
+print(False and False)
+print(5 > 3 and 3 >1)
 
-True or True
-True or False
-5 > 3 or 1 > 3
+print(True or True)
+print(True or False)
+print(5 > 3 or 1 > 3)
 
-not True
-not False
-not 1 > 2
-```
+print(not True)
+print(not False)
+print(not 1 > 2)
 
-* 空值
+# 5. 空值
+print('\n## 空值 ##\n')
+print(None)
 
-
-> None表示空值,不能理解为0，0是有意义的，而None是一个特殊的空值。此外，Python还提供了列表、字典等多种数据类型，还允许创建自定义数据类型
-
-* 变量
-
-```py
+# 6. 变量
+print('\n## 变量 ##\n')
 # 命名
 a = 1
 t_007 = 'T007'
@@ -125,16 +108,10 @@ b = a
 a = 'XYZ'
 print(b)
 
-```
-
-* 常量
-
-```py
-# 习惯上约定常量的名称全部用大写
+# 7. 常量
+print('\n## 常量 ##\n')
 PI = 3.14159265359
-
-# Python中，有两种除法
-
+print(PI)
 # 一种是/;计算结果为浮点数，即使是两个证书恰好整除，结果也是浮点数
 print(10 / 3) # 3.3333333333333335
 print(9 / 3) # 3.0
@@ -145,12 +122,12 @@ print(10 // 3)
 # 余数运算
 print(10 % 3) # 1
 
-```
 
+print('ABC'.encode('ascii'))
 
 #### 3. 字符串和编码
+print('\n## 字符串和编码 ##\n')
 
-```py
 # 字符串是已Unicode编码，支持多语言
 print('包含中文str')
 
@@ -163,12 +140,6 @@ print(chr(25991))
 
 print('\u4e2d\u6587')
 
-# 由于Python字符串类型是str，在内存中以Unicode表示，一个字符对应若干个字节。如果再网络上传输，或者保存到磁盘上，就需要把str变为以字节为单位的bytes
-
-# Python对bytes类型的数据用带b前缀的单引号或双引号表示
-x = b'ABC'
-# 区分'ABC'和b'ABC'；前者是str，后者虽然内容显示得和前者一样，但bytes的每个字符都只占用一个字节
-
 # 以Unicode表示的str通过encode()方法可以编码为指定的bytes
 print('ABC'.encode('ascii'))
 print('中文'.encode('utf-8'))
@@ -179,7 +150,7 @@ print(b'ABC'.decode('ascii'))
 print(b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8'))
 
 # 如果bytes中包含无法解码的字节，decode()方法会报错; 如果bytes中只有一小部分无效的字节，可以传入errors='ignore'忽略错误的字节
-print(b'\xe4\xb8\xad\xff'.decode('utf-8'))
+# print(b'\xe4\xb8\xad\xff'.decode('utf-8'))
 print(b'\xe4\xb8\xad\xff'.decode('utf-8', errors='ignore'))
 
 # 计算bytes包含多少个字符，可以用len()函数; len()函数计算的是字符数，如果换成bytes, len函数就计算字节数
@@ -188,7 +159,3 @@ print(len('中文')) # 2
 
 print(len(b'ABC')) # 3
 print(len('中文'.encode('utf-8'))) # 6
-
-
-
-```
