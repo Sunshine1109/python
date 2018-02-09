@@ -127,7 +127,7 @@ print('ABC'.encode('ascii'))
 
 #### 3. 字符串和编码
 
-print('\n\n################# 字符串和编码 ########################')
+print('\n\n################# 字符串和编码 ########################\n\n')
 print('\n## 字符串和编码 ##\n')
 
 # 字符串是已Unicode编码，支持多语言
@@ -170,7 +170,7 @@ print('%2d-%02d' % (3, 1))
 print('%.2f' % 3.14159265359)
 
 
-print('\n\n##################### 使用list和tuple #####################')
+print('\n\n##################### 使用list和tuple #####################\n\n')
 
 # 1. list
 print('\n## list ##\n')
@@ -237,3 +237,106 @@ print(d) # '不变'是指指向不变
 c = ('a', 'b')
 # c[1] = 'd' # error
 print(c)
+
+
+print('\n\n##################### 条件判断 #####################\n\n')
+
+# s = input('birth: ')
+# birth = int(s)
+birth = 1990
+if birth < 2000:
+    print('00前')
+else:
+    print('00后')
+
+
+print('\n\n##################### 循环 #####################\n\n')
+
+# 1. for循环
+
+names = ['Michael', 'Bob', 'Tracy']
+for name in names:
+    print(name)
+
+sum = 0
+for x in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+    sum = sum + x
+print(sum)
+
+# range函数，可以生成一个整数序列，再通过list()函数转换为list,range(5)生成一个从0到5的整数
+sum = 0
+for x in range(101):
+    sum = sum + x
+print(sum)
+
+# 2. while循环
+sum = 0
+n = 100
+while n > 0:
+    sum = sum + n
+    n = n - 1
+print(sum)
+
+# 3. break 可以提前退出循环
+n = 1
+while n <= 100:
+    if n > 10:
+        break
+    print(n)
+    n = n + 1
+print('END')
+
+# 4. continue 跳过当前的这次循环，直接开始下一个循环
+
+n = 0
+while n < 10:
+    n = n + 1
+    if n % 2 == 0:
+        continue
+    print(n)
+
+# !!! 大部分时候，并不需要使用break 和 continue ； 可以通过改写循环条件避免
+
+
+print('\n\n##################### dict和set #####################\n\n')
+
+# 1. dict
+d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
+print(d['Michael'])
+
+# 通过key设置value
+d['key'] = 'value'
+d['key'] = 'value2' # 覆盖前者
+
+# print(d['key2']) # key不存在，报错
+print('key2' in d) # False 检查是否存在key
+print(d.get('key2')) # None 如果不存在则返回None
+print(d.get('key2', -1)) # 不存在返回-1
+
+# 删除一个key
+print(d.pop('Bob')) # 返回key对应的值
+
+# 2. set
+
+# 要创建一个set，需要提供一个list座位输入集合:
+s = set([1, 2, 3])
+print(s) # {1, 2, 3}
+
+# 重复元素，set会自动过滤
+s = set([1, 1, 2, 2, 3, 3])
+print(s) # {1, 2, 3}
+
+# 通过add(key)方法添加元素到set，可以重复添加，但不会有效果
+s.add(4)
+s.add(4)
+print(s) # {1, 2, 3, 4}
+
+# 通过remove(key)方法可以删除元素
+s.remove(4)
+print(s) # {1, 2, 3}
+
+# set可以看成数学意义上无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集操作
+s1 = set([1, 2, 3])
+s2 = set([2, 3, 4])
+print(s1 & s2) # {2, 3}
+print(s1 | s2) # { 1, 2, 3, 4}
