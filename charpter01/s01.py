@@ -16,7 +16,7 @@ print('The quick brown fox', 'jump over', 'the lazy dog')
 # print('hello', name)
 
 
-print('\n\n################## 数据类型和变量 #####################\n\n')
+print('\n\n################# 数据类型和变量 ################\n\n')
 
 # 1. 整数
 print('\n## 整数 ##\n')
@@ -126,6 +126,8 @@ print(10 % 3) # 1
 print('ABC'.encode('ascii'))
 
 #### 3. 字符串和编码
+
+print('\n\n################# 字符串和编码 ########################')
 print('\n## 字符串和编码 ##\n')
 
 # 字符串是已Unicode编码，支持多语言
@@ -159,3 +161,79 @@ print(len('中文')) # 2
 
 print(len(b'ABC')) # 3
 print(len('中文'.encode('utf-8'))) # 6
+
+print('Hello, %s' % 'world') # Hello, world
+print('Hi, %s, you have $%d.' % ('xiuhong', 10000000)) # Hi, xiuhong, you have $10000000
+
+# 格式化整数和浮点数还可以指定是否补0和整数与小数的位数
+print('%2d-%02d' % (3, 1))
+print('%.2f' % 3.14159265359)
+
+
+print('\n\n##################### 使用list和tuple #####################')
+
+# 1. list
+print('\n## list ##\n')
+classmates = ['Michael', 'Bob', 'leifeng']
+print(classmates)
+
+# len获取长度
+print(len(classmates))
+
+# 用索引访问list中每一个位置的元素, 从0开始
+# 超出所以呢，Python会报一个IndexError错误
+print(classmates[0]) # 'Michael'
+# print(classmates[3]) # 报错，越界
+print(len(classmates) - 1) # 数组最后一位, leifeng
+
+# 除了计算索引位置外，还可以用-1做索引，直接获取最后一个元素
+print(classmates[-1]) # leifeng
+# print(classmates[-4]) # 报错，越界
+
+
+# 插入
+classmates.insert(1, 'Jack') # 索引为1
+print(classmates) # Michael Jack Bob leifeng 
+
+# append list末尾添加元素
+classmates.append('Adam') # 加入到最后一个位置
+print(classmates) # Michael Jack Bob leifeng Adam
+
+# pop 删除list末尾元素
+classmates.pop()
+print(classmates) # Michael Jack Bob leifeng
+
+# pop 删除指定位置元素
+classmates.pop(1)
+print(classmates) # Michael Bob leifeng
+
+# 替换list中元素
+classmates[1] = 'Sarah'
+print(classmates) # Michael Sarah leifeng
+
+# list 里面元素类型也可以不同
+L = ['Apple', 123, True]
+s = ['python', 'java', ['javascript', 'css'], 'schema']
+print(len(s)) # 4
+
+# 2. tuple
+print('\n## tuple ##\n')
+classmates = ('Michael', 'Bob', 'Tracy')
+
+# 使用tuple的意义在于：静态更安全；在定义一个tuple时，tuple的元素就必须被确定下来
+t = (1, 2)
+# t = (4, 5) # 仍然可以覆盖
+print(t)
+
+b = ()
+print(b)
+
+# 可变的tuple
+d = ('a', 'b', ['A', 'B'])
+d[2][0] = 'X'
+d[2][1] = 'Y'
+print(d) # '不变'是指指向不变
+
+c = ('a', 'b')
+# c[1] = 'd' # error
+print(c)
