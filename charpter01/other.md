@@ -139,7 +139,88 @@ print([s.lower() for s in L]) # ['hello', 'world', 'ibm']
 > 为节省内存空间，一边循环一遍计算
 
 ```py
-# 1. 创建生成器: generator
+# 1. 创建生成器: generator; 创建list和generator的区别仅在于最外层的[]和()
+g = (x * x for x in range(10))
+print(g) # <generator object <genexpr> at 0x104133fc0> 
 
+# 1.1 通过next()打印generator
+print(next(g)) # 0
+print(next(g)) # 1
 
+# 1.2 通过迭代输出
+for x in g:
+    print(x)
+
+# 2. 打印斐波拉契数列（函数的方法）
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        print(b)
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+print(fib(10))
+
+# 3. 打印斐波拉契梳理（generator）
+# 定义generator的另一种方法: 如果函数定义中有yield关键字，该函数就是一个generator函数
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+
+# 3.1 通过循环输出
+for n in fib(10):
+    print(n)
+
+# 3.2 获取generator返回值
+
+g = fib(6)
+while True:
+    try:
+        x = next(g)
+        print('g:', x)
+    except StopIteration as e:
+        print('Generator return value:', e.value)
+        break
 ```
+
+#### 5. 迭代器
+
+##### 5.1 Iterable对象
+
+> 可用于`for`循环的数据类型分为两类：
+* 集合数据类型： `list tuple dict set str`等
+* generator类型，包括生成器好和带`yield`的`generator function`
+
+**这些可直接作用域`for`循环的对象成为可迭代对象：`Iterable`，可以通过`isinstance()`判断一个对象是否是`Iterable`对象***
+
+```py
+from collections import Iterable
+print(isinstance([], Iterable)) # True
+print(isinstance('abc', Iterable)) # True
+```
+
+##### 5.2 Itertor对象
+
+> 可以被`next()`函数调用并不断返回下一个的对象成为迭代器: `Iterator`
+
+```py
+isinstance((x for x in range(10)), Iterator) # True
+isinstance([], Iterator) # False
+
+# * 生成器对象既是`Iterable`对象，又是`Itertor`对象
+print(isinstance((x for x in range(10)), Iterable))
+print(isinstance((x for x in range(10)), Iterator))
+```
+
+##### 5.3 iter转换
+
+```py
+isinstance(iter([]), Iterator) # True
+isinstance(iter('abc'), Iterator) # True
+```
+
+## `Iterator`优势: 它可以表示一个无限大的数据流

@@ -115,3 +115,67 @@ print([key + '=' + value for key, value in d.items()])
 print('\n# 5.2 把list中所有字符串变成小写 #\n')
 L = ['Hello', 'World', 'IBM']
 print([s.lower() for s in L]) # ['hello', 'world', 'ibm']
+
+
+print('\n\n################# 生成器 ######################')
+print('\n## 1. 创建生成器 ##\n')
+g = (x * x for x in range(10))
+
+print('\n## next输出 ##\n')
+print(next(g))
+print(next(g))
+
+print('\n## 循环输出 ##\n')
+for x in g:
+    print(x)
+
+print('\n## 2. 斐波拉契数列(函数) ##\n')
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        print(b)
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+print(fib(10))
+
+print('\n## 3. 斐波拉契额数列(generator) ##\n')
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+
+print('\n## 3.1 循环输出 ##\n')
+for n in fib(10):
+    print(n)
+
+print('\n ## 3.2 输出返回值 ##\n')
+g = fib(6)
+while True:
+    try:
+        x = next(g)
+        print('g:', x)
+    except StopIteration as e:
+        print('Generator return value:', e.value)
+        break
+
+
+
+
+print('\n\n################# 迭代器 ######################\n\n')
+
+from collections import Iterator
+from collections import Iterable
+
+isinstance((x for x in range(10)), Iterator) # True
+isinstance([], Iterator) # False
+
+# * 生成器对象既是`Iterable`对象，又是`Itertor`对象
+print(isinstance((x for x in range(10)), Iterable)) # True
+print(isinstance((x for x in range(10)), Iterator)) # True
+
+print(isinstance(iter([]), Iterator)) # True
+print(isinstance(iter('abc'), Iterator)) # True
