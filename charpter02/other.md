@@ -1,29 +1,44 @@
-#!/usr/bin/env python3
+## 函数式编程
 
-print('\n\n ####################### 函数式编程 #########################\n\n')
+```shell
+# 高阶函数
+# 返回函数
+# 匿名函数
+# 装饰器
+# 偏函数
+```
+#### 1 高阶函数
 
-print('\n## 1. 高阶函数 ##\n')
-print('\n1. map \n')
+##### 1.1 map函数
 
+```py
+# map返回的对象是Iterator
 def f(x):
     return x * x
 r = map(f, [1, 2, 3])
 print(list(r))
-# map返回的对象是Iterator
+```
 
-print('\n## 2. reduce ##\n')
+##### 1.2 reduce函数
+
+```py
 from functools import reduce
 def add(a, b):
     return a + b
-    
 print(reduce(add, [1, 2, 3]))
+```
 
-print('\n## 3. filter ##\n')
+##### 1.3 filter函数
+
+```py
 def is_odd(n):
     return n % 2 == 0
 print(list(filter(is_odd, [1, 2, 3, 4, 5, 6])))
+```
 
-print('\n## 4. sorted ##\n')
+##### 1.4 sorted函数
+
+```py
 # 默认排序(小-大)
 print(sorted([22, 10, -12, 20]))
 
@@ -35,3 +50,4 @@ print(sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower))
 
 # 反向排序
 print(sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower, reverse=True))
+```
