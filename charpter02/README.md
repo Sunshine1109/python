@@ -189,6 +189,28 @@ print(person('Jack', 24, job = 'Engineer'))
 
 #### 4. 递归函数
 
+* 阶乘
+```py
+# 需要防止栈溢出，当递归调用的次数过多，会导致栈溢出; 如求 1000!
+def fact(n):
+    if n == 1:
+        return 1
+    return n * fact(n - 1)
+```
+
+* 尾递归
+```py
+def fact(n):
+    return fact_iter(n, 1)
+
+def fact_iter(num, product):
+    if num == 1:
+        return product
+    return fact_iter(num - 1, num * product)
+```
+
+
+
 
 
 
