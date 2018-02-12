@@ -34,26 +34,23 @@ def test():
 
 if __name__ == '__main__'
   test()
+```
 
+#### 2. 命名空间
 
+* 通过下标`_name`来表示`private`；python并没有限制，只是一种命名规范
 
+```py
+def _private1(name):
+    print('hello %s' % name)
 
+def _private2(name):
+    print('hi %s' % name)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def greeting():
+    args = sys.argv
+    if len(args[1]) > 3:
+        _private1(args[1])
+    else:
+        _private2(args[1])
 ```
