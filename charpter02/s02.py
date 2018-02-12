@@ -165,3 +165,28 @@ print(int2('1000001'))
 
 max2 = functools.partial(max, *(11, 22, 33))
 print(max2(4, 5, 6)) # 相当于max2(11, 22, 33, 4, 5, 6)
+
+
+
+import math 
+def quadratic(a, b, c):
+    if a == 0:
+        raise TypeError('第一个数字不能为0')
+    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)) or not isinstance(c, (int, float)):
+        raise TypeError('请输入整数或小数')
+    beta = b * b - 4 * a * c
+    if beta  < 0:
+        return '无解'
+    else:
+        x1 = (math.sqrt(beta) - b) / 2 * a
+        x2 = (math.sqrt(beta) + b) / 2 * a
+        return (x1, x2)
+
+abc = input('请输入三位整数并用逗号作为分隔符：')
+inputList = abc.split(',')
+
+a = int(inputList[0])
+b = int(inputList[1])
+c = int(inputList[2])
+
+print(quadratic(a, b, c))
