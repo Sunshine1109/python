@@ -78,3 +78,107 @@ print('score', std.score)
 
 print('\n\n################### 3. 多重继承 ######################\n\n')
 
+class Mammal(object):
+    def mammal(self):
+        print('I am mammal')
+
+class Runnable(object):
+    def run(self):
+        print('I can run')
+
+class Dog(Mammal, Runnable):
+    def dog(self):
+        print('I am dog')
+
+dog = Dog()
+print(dog.dog())
+print(dog.mammal())
+print(dog.run())
+
+print('\n\n################## 4. 定制类 ######################\n\n')
+
+print('\n## 1. __str__ 和 __repr__ ##\n')
+class Student(object):
+    def __init__(self, name):
+        self.name = name
+    def __str__(self):
+        return 'Student object (name: %s)' % self.name
+    
+    __repr__ = __str__
+
+std = Student('xiu')
+print(std)
+
+print('\n## 2. __iter__ 和 __getitem__ ##\n')
+
+class Fib(object):
+    def __init__(self):
+        self.a, self.b = 0, 1
+    
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        self.a, self.b = self.b, self.a + self.b
+        if self.a > 100:
+            raise StopIteration()
+        return self.a
+
+    def __getitem__(self, n):
+        if isinstance(n, int): # n是索引
+            a, b = 1, 1
+            for x in range(n):
+                a, b = b, a + b
+            return a
+        if isinstance(n, slice): # n是切片
+            start = n.start
+            stop = n.stop
+            if start is None:
+                start = 0
+            a, b = 1, 1
+            L = []
+            for x in range(stop):
+                if x >= start:
+                    L.append(a)
+                a, b = b, a + b
+            return L
+
+f = Fib()
+for n in Fib():
+    print(n)
+print(f[10])
+print(f[0:5])
+
+print('\n## 2. __getattr__ ##\n ')
+
+class Student(object):
+    def __init__(self):
+        self.name = 'xiu'
+    def __getattr__(self, attr):
+        if attr == 'score':
+            return 99
+
+std = Student()
+print(std.score)
+
+print('\n## 3. __call__ ##\n')
+
+class Student(object):
+    def __init__(self, name):
+        self.name = name
+    
+    def __call__(self):
+        print('self call')
+
+std = Student('xiu')
+print(std())
+print(callable(Student('hong')))
+
+print('\n\n################ 5. 枚举类 ##################\n\n')
+
+from enum import Enum
+
+Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+
+for name, member in Month.__members__.items():
+    print(name, '=>', member, ',', member.value)
