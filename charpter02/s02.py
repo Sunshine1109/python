@@ -15,7 +15,7 @@ print('\n## 1.2 reduce ##\n')
 from functools import reduce
 def add(a, b):
     return a + b
-    
+
 print(reduce(add, [1, 2, 3]))
 
 print('\n## 1.3 filter ##\n')
@@ -168,7 +168,7 @@ print(max2(4, 5, 6)) # 相当于max2(11, 22, 33, 4, 5, 6)
 
 
 
-import math 
+import math
 def quadratic(a, b, c):
     if a == 0:
         raise TypeError('第一个数字不能为0')

@@ -20,7 +20,7 @@ class Student(object):
     def __init__(self, name, score):
         self.__name = name
         self.__score = score
-    
+
     def print_score(self):
         print('%s %s' % (self.__name, self.__score))
 
@@ -33,7 +33,7 @@ print('\n\n###################  3. 继承和多态 ####################\n\n')
 class Animal(object):
     def run(self):
         print('Animal is running...')
-    
+
 class Dog(Animal):
     def run(self):
         print('Dog is running...')
