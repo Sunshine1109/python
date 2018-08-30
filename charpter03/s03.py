@@ -16,6 +16,19 @@ class Dog(object):
     def setName(self, name):
         self.__name = name
 
+class GoldDog(Dog):
+    def __init__(self, name, color, age, favorite):
+        Dog.__init__(self, name, color, age)
+        self.favorite = favorite;
+
+    def eat(self):
+        print('jingmao is eating %s' % self.favorite)
+
+gold1 = GoldDog('jinmao', 'yellow', 3, 'meat')
+print('gold1 name is %s' % gold1.getName())
+print('gold1', gold1.favorite)
+
+
 d1 = Dog('dog1', 'red', 2)
 d2 = Dog('dog2', 'yellow', 1)
 d3 = Dog('dog3', 'black', 4)
