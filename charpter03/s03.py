@@ -38,3 +38,4 @@ print(d1.getName())
 
 d1.setName('dog5')
 print(d1.getName())
+abs(-12)
