@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 class Dog(object):
 
     def __init__(self, name, color, age):
